@@ -12,7 +12,8 @@ Create a text file which name starts with sudoku. The program supports multiple 
 <br>Example: `sudoku.txt`, `sudoku_test.txt` or `sudoku board.txt`
 <br>The file should be placed in the same directory as `solver.py`
 
-Fill the text file with input data so that you have 9 lines, 9 characters each. For empty field you can use any character that is not a space. Can be `.` or `0` if you want. So that this:
+Fill the text file with input data so that you have 9 lines, 9 characters each. For empty field you can use any character that is not a space. Can be `.` or `0` if you want. 
+So that this...
 ```
 .2...43..
 9...2...8
@@ -24,7 +25,7 @@ Fill the text file with input data so that you have 9 lines, 9 characters each. 
 1...9...3
 ..98...6.
 ```
-Gives this (in the mage below there will always be dots even if you used a different character):
+...gives this (in the mage below there will always be dots even if you used a different character):
 ```
 ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
 ┃ .  2  . ┃ .  .  4 ┃ 3  .  . ┃

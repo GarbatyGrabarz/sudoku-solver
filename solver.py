@@ -20,6 +20,7 @@ SECTORS_DEFINITIONS = {
     'SE': [(6, 7, 8), (6, 7, 8)],
 }
 
+EXIT_MESSAGE = 'Press [ENTER] to close the window'
 
 def make_sectors_dicts(sectors: dict) -> tuple[dict, dict]:
     """Generate locations to sector and sector to locations dictionaries
@@ -62,19 +63,20 @@ def load_input_data(lines: list[str]) -> tuple[dict, list]:
     for row_number, line in enumerate(lines):
         line = line.strip()
 
+        if row_number > 8:
+            print('Too many rows!')
+            _ = input(EXIT_MESSAGE)
+            exit()
+
         if len(line) != 9:
             print(
                 f'Incorrect line {row_number + 1}. '
                 f'Expected 9 characters. Found {len(line)}'
             )
-            _ = input('Press [ENTER] to close the window')
+            _ = input(EXIT_MESSAGE)
             exit()
 
         for colum_number, character in enumerate(line):
-            if row_number > 8:
-                print('Too many rows!')
-                _ = input('Press [ENTER] to close the window')
-                exit()
 
             if character.isdigit() and 0 < int(character) < 10:
                 number = int(character)
@@ -209,7 +211,7 @@ if __name__ == '__main__':
     ]
     if not input_files:
         print('Found no input files. Their name should start with "sudoku" and be .txt')
-        _ = input('Press [ENTER] to close the window')
+        _ = input(EXIT_MESSAGE)
         exit()
 
     # Ask user for a file number
@@ -241,6 +243,12 @@ if __name__ == '__main__':
     while len(visited) <= 81:
         # Exclude neighbors for single numbers
         for single_number_location in single_numbers_locations:
+            if not sudoku[single_number_location]:
+                x, y = single_number_location
+                print('This sudoku seems to be incorrect.')
+                print(f'Location ({x +1}, {y +1}) is a duplicate.')
+                _ = input(EXIT_MESSAGE)
+                exit()
             if single_number_location not in visited:
                 visited.append(single_number_location)
                 value = sudoku[single_number_location][0]
@@ -274,7 +282,7 @@ if __name__ == '__main__':
     else:
         print_sudoku()
 
-    _ = input('Press [ENTER] to close the window')
+    _ = input(EXIT_MESSAGE)
 
 
 """  TODO:

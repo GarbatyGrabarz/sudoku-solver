@@ -273,6 +273,8 @@ if __name__ == '__main__':
     else:
         print_sudoku()
 
+    _ = input('Press [ENTER] to close the window')
+
 
 """  TODO:
 Make sudoku board as a class so all operations on the board are methods.

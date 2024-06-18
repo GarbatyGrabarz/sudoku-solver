@@ -246,7 +246,6 @@ if __name__ == '__main__':
             if not sudoku[single_number_location]:
                 x, y = single_number_location
                 print('This sudoku seems to be incorrect.')
-                print(f'Location ({x +1}, {y +1}) is a duplicate.')
                 _ = input(EXIT_MESSAGE)
                 exit()
             if single_number_location not in visited:

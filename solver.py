@@ -67,11 +67,13 @@ def load_input_data(lines: list[str]) -> tuple[dict, list]:
                 f'Incorrect line {row_number + 1}. '
                 f'Expected 9 characters. Found {len(line)}'
             )
+            _ = input('Press [ENTER] to close the window')
             exit()
 
         for colum_number, character in enumerate(line):
             if row_number > 8:
                 print('Too many rows!')
+                _ = input('Press [ENTER] to close the window')
                 exit()
 
             if character.isdigit() and 0 < int(character) < 10:
@@ -207,6 +209,7 @@ if __name__ == '__main__':
     ]
     if not input_files:
         print('Found no input files. Their name should start with "sudoku" and be .txt')
+        _ = input('Press [ENTER] to close the window')
         exit()
 
     # Ask user for a file number
@@ -218,11 +221,9 @@ if __name__ == '__main__':
             selected_number = int(decision)
         except ValueError:
             print('Incorrect choice.\n')
-            # exit()
             continue
         if not (0 < selected_number <= len(input_files)):
             print('Wrong number!\n')
-            # exit()
             continue
         break
 

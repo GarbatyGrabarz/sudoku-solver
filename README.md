@@ -25,7 +25,7 @@ So that this...
 1...9...3
 ..98...6.
 ```
-...gives this (in the mage below there will always be dots even if you used a different character):
+...gives this (in the image below there will always be dots even if you used a different character):
 ```
 ┏━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━┓
 ┃ .  2  . ┃ .  .  4 ┃ 3  .  . ┃

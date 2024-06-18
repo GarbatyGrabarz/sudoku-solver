@@ -203,7 +203,7 @@ if __name__ == '__main__':
     root_dir = pathlib.Path(__file__).resolve().parent
     input_files = [
         file for file in root_dir.iterdir()
-        if file.stem.lower().startswith('sudoku') and file.suffix == '.txt'
+        if file.stem.lower().startswith('sudoku') and file.suffix.lower() == '.txt'
     ]
     if not input_files:
         print('Found no input files. Their name should start with "sudoku" and be .txt')

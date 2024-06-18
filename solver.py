@@ -235,6 +235,7 @@ if __name__ == '__main__':
     visited = []
     single_numbers_locations = starting_numbers.copy()
 
+    # Actual solution
     cycles = 0
     while len(visited) <= 81:
         # Exclude neighbors for single numbers
@@ -273,7 +274,9 @@ if __name__ == '__main__':
         print_sudoku()
 
 
-    # NOTE: THIS IS THE END
-    for location, value in sudoku.items():
-        if len(value) == 2:
-            print(f'{location}:', value)
+"""  TODO:
+Make sudoku board as a class so all operations on the board are methods.
+When you reach the dead end generate a list of fields with only two choices.
+Make a copy of the board - pick one choice. If fail pick another. If fail, go to another
+bi-number location and repeat.
+"""

@@ -43,8 +43,8 @@ def load_input_from_file(path: str) -> tuple[dict, list]:
     return fields, starting_numbers
 
 
-# Use to generate locations for each quadrant
-QUADRANTS_DEFINITIONS = {
+# Use to generate locations for each sector
+SECTORS_DEFINITIONS = {
     'NW': [(0, 1, 2), (0, 1, 2)],
     'N': [(0, 1, 2), (3, 4, 5)],
     'NE': [(0, 1, 2), (6, 7, 8)],
@@ -56,15 +56,15 @@ QUADRANTS_DEFINITIONS = {
     'SE': [(6, 7, 8), (6, 7, 8)],
 }
 
-# Generate locations to quardant and quadrant to locations dictionaries
-quadrants_locations = defaultdict(list)
-quadrants_names = dict()
-for name, q in QUADRANTS_DEFINITIONS.items():
+# Generate locations to quardant and sector to locations dictionaries
+sectorss_locations = defaultdict(list)
+sectors_names = dict()
+for name, q in SECTORS_DEFINITIONS.items():
     x, y = q
     for i in range(x[0], x[2] + 1):
         for j in range(y[0], y[2] + 1):
-            quadrants_locations[name].append((i, j))
-            quadrants_names[(i, j)] = name
+            sectorss_locations[name].append((i, j))
+            sectors_names[(i, j)] = name
 
 
 def exclude_lines(number: int, location: tuple[int, int]):
@@ -88,18 +88,18 @@ def exclude_lines(number: int, location: tuple[int, int]):
                 sudoku[(r, i)].remove(number)
 
 
-def exclude_quadrants(number: int, location: tuple[int, int]):
-    """Edits global sudoku. Exclude numbers already present in a quadrant
+def exclude_sectors(number: int, location: tuple[int, int]):
+    """Edits global sudoku. Exclude numbers already present in a sector
 
-    For each number, other locations in the quadrant have the number removed.
+    For each number, other locations in the sector have the number removed.
 
     Args:
         number (int): Number to remove from candidates lists.
         location (tuple[int, int]): Location of the investigated field.
     """
     global sudoku
-    quadrant = quadrants_names[location]
-    for loc in quadrants_locations[quadrant]:
+    sector = sectors_names[location]
+    for loc in sectorss_locations[sector]:
         if loc != location and number in sudoku[loc]:
             sudoku[loc].remove(number)
 
@@ -169,8 +169,8 @@ while len(visited) <= 81:
             visited.append(single_number_location)
             value = sudoku[single_number_location][0]
             exclude_lines(value, single_number_location)
-            exclude_quadrants(value, single_number_location)
-            # check each quadrant for numbers 1..9 if the number appears once on the list it becomes the list
+            exclude_sectors(value, single_number_location)
+            # check each sector for numbers 1..9 if the number appears once on the list it becomes the list
             # same for lines
 
     single_numbers_locations = search_singles(visited)
